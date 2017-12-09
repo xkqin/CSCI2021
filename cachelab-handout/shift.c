@@ -19,7 +19,25 @@ char matrix_shift_submit_desc[] = "Matrix shift submission";
 void matrix_shift_submit(int M, int N, int A[M][N], int s, int E, int b)
 {
     // TODO: Fill this in
+    if (M == 4 && N == 4) {
+      int i,j,k,t0,t1;
+  for (i=1; i<M; i++) {
+      for (j=0; j<N; j+=2) {
+          for (k=0; k<2; k++) {
+              t0 = A[i][j+k];
+              t1 = A[i][j+1+k];
+
+              A[i][j+k] = A[i-1][j+k];
+              A[i][j+k+1] = A[i][j+k+1];
+              A[i-1][j+k] = t0;
+              A[i][j+k+1] = t1;
+
+          }
+      }
+    }
+  }
 }
+
 
 /*
  * You can define additional matrix shift functions below. We've defined
